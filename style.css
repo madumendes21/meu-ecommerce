@@ -1,0 +1,691 @@
+/* RESET E ESTILOS GERAIS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f4;
+    color: #333;
+}
+
+/* 1. CABEÇALHO */
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nome-loja {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: #2d5a27;
+}
+
+.menu-navegacao a {
+    text-decoration: none;
+    color: #555;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menu-navegacao a:hover {
+    color: #2d5a27;
+}
+
+.carrinho-icone {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* 2. CARROSSEL CSS (SCROLL SNAP) */
+.hero-carrossel {
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+}
+
+.hero-carrossel::-webkit-scrollbar {
+    display: none;
+}
+
+.carrossel-container {
+    display: flex;
+    width: 300%;
+}
+
+.slide {
+    width: 100vw;
+    scroll-snap-align: start;
+}
+
+.slide picture img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* TÍTULOS */
+.titulo-secao {
+    text-align: center;
+    margin: 40px 0 20px;
+    color: #2d5a27;
+}
+
+/* 3. NAVEGAÇÃO POR CATEGORIAS */
+.categorias-secao {
+    padding: 0 5%;
+}
+
+.categorias-grid {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.categoria-item {
+    text-align: center;
+    cursor: pointer;
+}
+
+.categoria-item p {
+    margin-top: 10px;
+    font-weight: 600;
+    color: #444;
+}
+
+.avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid transparent;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.categoria-item:hover .avatar-wrapper {
+    transform: scale(1.08);
+    border-color: #2d5a27;
+}
+
+/* 4. VITRINE DE PRODUTOS (GRID + ASPECT RATIO) */
+.vitrine-secao {
+    padding: 40px 5%;
+}
+
+.vitrine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.produto-card {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.produto-foto-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.produto-foto-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.produto-card:not(.esgotado):hover .produto-foto-container img {
+    transform: scale(1.1);
+}
+
+.produto-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.produto-info h3 {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.preco {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.preco.indisponivel {
+    color: #888;
+}
+
+.btn-comprar {
+    background-color: #2d5a27;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: auto;
+    transition: background 0.3s;
+}
+
+.btn-comprar:hover:not(:disabled) {
+    background-color: #1e3d1a;
+}
+
+.btn-comprar:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* 5. PRODUTO ESGOTADO */
+.produto-card.esgotado .produto-foto-container img {
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.etiqueta-esgotado {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #d9534f;
+    color: white;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+/* RODAPÉ */
+.rodape {
+    background-color: #2d5a27;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+/* ==========================================
+   EXPANSÃO - REQUISITOS DA PARTE 2
+   ========================================== */
+
+/* PÁGINA: DETALHES DO PRODUTO */
+.produto-detalhes-container {
+    padding: 40px 5%;
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.produto-galeria {
+    flex: 1 1 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.foto-principal-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.foto-principal-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.miniaturas-grid {
+    display: flex;
+    gap: 15px;
+}
+
+.miniatura {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s, transform 0.2s;
+}
+
+.miniatura:hover {
+    transform: scale(1.05);
+}
+
+.miniatura.ativa {
+    border-color: #2d5a27;
+}
+
+.produto-compra-info {
+    flex: 1 1 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.produto-nome-detalhe {
+    color: #2d5a27;
+    font-size: 2rem;
+}
+
+.produto-codigo {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.preco-detalhe {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.descricao-breve {
+    line-height: 1.6;
+    color: #555;
+}
+
+.opcoes-compra {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.opcoes-compra input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.btn-comprar-detalhe {
+    background-color: #2d5a27;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-comprar-detalhe:hover {
+    background-color: #1e3d1a;
+}
+
+.especificacoes-tecnicas h3 {
+    color: #2d5a27;
+    margin-bottom: 10px;
+}
+
+.especificacoes-tecnicas ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.especificacoes-tecnicas li::before {
+    content: "🌿 ";
+}
+
+/* PÁGINA: CARRINHO DE COMPRAS */
+.carrinho-container {
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.carrinho-layout {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.tabela-produtos-wrapper {
+    flex: 2 1 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    overflow-x: auto;
+}
+
+.tabela-carrinho {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-carrinho th, .tabela-carrinho td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-carrinho th {
+    color: #2d5a27;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.carrinho-thumb {
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.nome-prod-tabela {
+    font-weight: 600;
+}
+
+.input-qtd-tabela {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+.btn-remover-item {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.resumo-pedido-card {
+    flex: 1 1 300px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.resumo-pedido-card h3 {
+    color: #2d5a27;
+    border-bottom: 2px solid #2d5a27;
+    padding-bottom: 10px;
+}
+
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.frete-gratis {
+    color: #2d5a27;
+    font-weight: bold;
+}
+
+.resumo-linha.total {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d5a27;
+}
+
+.btn-finalizar-compra {
+    background-color: #2d5a27;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-finalizar-compra:hover {
+    background-color: #1e3d1a;
+}
+
+.btn-continuar-comprando {
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+/* PÁGINA: CADASTRO E FORMULÁRIOS */
+.cadastro-container {
+    padding: 20px 5%;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.formulario-checkout {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.grupo-formulario {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #fafdfa;
+}
+
+.grupo-formulario legend {
+    color: #2d5a27;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+}
+
+.campo:last-child {
+    margin-bottom: 0;
+}
+
+.campo-linha {
+    display: flex;
+    gap: 15px;
+}
+
+.campo-linha .campo {
+    flex: 1;
+}
+
+.campo label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.campo input[type="text"],
+.campo input[type="email"],
+.campo input[type="tel"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* ESTADOS DE FOCO (PSEUDO-CLASSES) */
+.campo input:focus {
+    border-color: #2d5a27;
+    box-shadow: 0 0 5px rgba(45, 90, 39, 0.3);
+}
+
+/* VALIDAÇÕES AVANÇADAS EXIGIDAS */
+.mensagem-erro {
+    display: none;
+    font-size: 0.75rem;
+    color: #d9534f;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* Quando o input estiver em foco E inválido */
+.campo input:focus:invalid {
+    border-color: #d9534f;
+    box-shadow: 0 0 5px rgba(217, 83, 79, 0.3);
+}
+
+.campo input:focus:invalid + .mensagem-erro {
+display: block;
+}
+/* Estilização quando o campo for perfeitamente válido */
+.campo input:valid:not(:placeholder-shown) {
+border-color: #2d5a27;
+background-color: #f7fbf7;
+}
+.campo-radio-grupo {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-top: 10px;
+}
+.radio-label {
+display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+font-weight: 500;
+}
+.radio-label input {
+accent-color: #2d5a27;
+}
+.btn-enviar-formulario {
+background-color: #2d5a27;
+color: white;
+border: none;
+padding: 15px;
+border-radius: 6px;
+font-size: 1.1rem;
+font-weight: bold;
+cursor: pointer;
+transition: background 0.3s;
+}
+.btn-enviar-formulario:hover {
+background-color: #1e3d1a;
+}
+.btn-finalizar-compra {
+    background-color: #2d5a27;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-finalizar-compra:hover {
+    background-color: #1e3d1a;
+}
+
+.btn-continuar-comprando {
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+/* Tabela de Especificações Zebrada */
+.tabela-especificacoes {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.tabela-especificacoes th, .tabela-especificacoes td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.tabela-especificacoes th {
+    color: #2d5a27;
+    font-weight: 600;
+    width: 30%;
+}
+
+/* Efeito Zebrado Obrigatório */
+.tabela-especificacoes tbody tr:nth-child(even) {
+    background-color: #f9fbf9;
+}
+
+/* Trilha Breadcrumb */
+.breadcrumb {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+.breadcrumb a {
+    text-decoration: none;
+    color: #2d5a27;
+}
+.avaliacao-estrelas {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+.preco-antigo {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 0.9rem;
+}

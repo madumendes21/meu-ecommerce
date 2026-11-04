@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broto & Co. | Seu Carrinho</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. IDENTIDADE VISUAL NO CABEÇALHO -->
+    <header class="cabecalho">
+        <div class="logo-container">
+            <a href="index.html" style="display: flex; align-items: center; gap: inherit; color: inherit; text-decoration: none;">
+                <svg class="logo-svg" viewBox="0 0 100 100" width="50" height="50" aria-label="Logotipo Broto e Co">
+                    <circle cx="50" cy="50" r="45" fill="#2d5a27"/>
+                    <path d="M50,25 Q65,45 50,75 Q35,45 50,25 Z" fill="#fff"/>
+                </svg>
+                <span class="nome-loja">Broto & Co.</span>
+            </a>
+        </div>
+        
+        <nav class="menu-navegacao">
+            <a href="index.html">Plantas</a>
+            <a href="index.html">Vasos</a>
+            <a href="index.html">Terrários</a>
+            <a href="index.html">Cuidados</a>
+        </nav>
+
+        <div class="carrinho-icone">
+            🛒 <span class="contador">1</span>
+        </div>
+    </header>
+
+    <main class="carrinho-container">
+        <h2 class="titulo-secao">Seu Carrinho de Compras</h2>
+        
+        <div class="carrinho-layout">
+            <!-- TABELA SEMÂNTICA DE PRODUTOS -->
+            <section class="tabela-produtos-wrapper" aria-label="Produtos no carrinho">
+                <table class="tabela-carrinho">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="imagens/prod1.jpg" alt="Miniatura da Planta Costela de Adão inclusa no carrinho" class="carrinho-thumb" width="70" height="70">
+                            </td>
+                            <td>
+                                <span class="nome-prod-tabela">Costela de Adão (M)</span>
+                            </td>
+                            <td>R$ 89,90</td>
+                            <td>
+                                <input type="number" value="1" min="1" max="10" class="input-qtd-tabela" aria-label="Quantidade do produto">
+                            </td>
+                            <td><strong>R$ 89,90</strong></td>
+                            <td>
+                                <button class="btn-remover-item" title="Remover item do carrinho" aria-label="Remover Costela de Adão">❌</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- RESUMO DO PEDIDO -->
+            <section class="resumo-pedido-card" aria-label="Resumo do pedido">
+                <h3>Resumo do Pedido</h3>
+                
+                <div class="resumo-linha">
+                    <span>Subtotal:</span>
+                    <span>R$ 89,90</span>
+                </div>
+                
+                <div class="resumo-linha">
+                    <span>Frete:</span>
+                    <span class="frete-gratis">GRÁTIS</span>
+                </div>
+                
+                <div class="resumo-linha total">
+                    <span>Total:</span>
+                    <span>R$ 89,90</span>
+                </div>
+
+                <a href="cadastro.html" class="btn-finalizar-compra">Finalizar Compra</a>
+                <a href="index.html" class="btn-continuar-comprando">Continuar Comprando</a>
+            </section>
+        </div>
+    </main>
+
+    <footer class="rodape">
+        <p>&copy; 2026 Broto & Co. - Imagens Semânticas e Otimizadas. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
